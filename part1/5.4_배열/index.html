@@ -1,0 +1,22 @@
+<!doctype html>
+<script src="https://ko.js.cx/test/libs.js"></script>
+<script src="test.js"></script>
+<script>
+
+  // 입력한 숫자의 합 구하기
+function sumInput(){
+    let sum = 0;
+    while (true) {
+        let input = prompt("입력하라",0);
+        console.log(input);
+        if(isFinite(input) && input != null && input !== ""){
+            sum += +input;
+        } else {
+            break;
+        }
+    }
+    alert(sum);
+}
+
+</script>
+</html>
