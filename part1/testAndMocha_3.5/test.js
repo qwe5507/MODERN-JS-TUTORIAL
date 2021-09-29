@@ -13,6 +13,7 @@ describe("pow", function () {
             makeTest(x);
         }
 
+        
     });
 
     // describe와 it을 사용해 이 아래에 더 많은 테스트를 추가할 수 있습니다.
