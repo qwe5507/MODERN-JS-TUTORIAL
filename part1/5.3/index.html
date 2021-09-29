@@ -1,0 +1,25 @@
+<!doctype html>
+<script src="https://ko.js.cx/test/libs.js"></script>
+<script src="test.js"></script>
+<script>
+
+// 과제2. 스팸 문자열 확인하기 
+function checkSpam(str){
+    return str.toLowerCase().includes("viagra") || str.toLowerCase().includes("xxx");
+}
+//과제3. 문자열 줄이기
+function truncate(str,maxLength){
+    if (str.length < maxLength) {
+        return str;
+    } else {
+        return str.slice(0, maxLength - 1) + '…';
+    }
+}
+//과제 5. 숫자만 추출하기 
+function extractCurrencyValue(str){
+    return +str.slice(1);
+}
+
+</script>
+
+</html>
