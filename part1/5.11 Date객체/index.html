@@ -1,0 +1,90 @@
+<!doctype html>
+<script src="https://ko.js.cx/test/libs.js"></script>
+<script src="test.js"></script>
+<script>
+    //날짜 생성하기
+    // alert(new Date(2012, 1, 20, 3, 12));
+
+    //요일 보여주기
+    // let date = new Date(2012, 0, 3); // 2012년 1월 3일
+    function getWeekDay(date) {
+        let dayArr = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"];
+        return dayArr[date.getDay()];
+    }
+    // console.log(getWeekDay(date));
+
+    //유럽 기준 달력
+    // let date = new Date(2019, 11, 5);
+    function getLocalDay(date) {
+        let day = date.getDay();
+        return day == 0 ? 7 : day;
+    }
+    //n일 전 '일' 출력하기
+    function getDateAgo(date, days) {
+        let dateCopy = new Date(date);
+
+        dateCopy.setDate(date.getDate() - days);
+        return dateCopy.getDate();
+    }
+    //달의 마지막 일 
+    function getLastDayOfMonth(mon, day) {
+        let date = new Date(mon, day);
+        date.setMonth(date.getMonth() + 1);
+        date.setDate(0);
+        return date.getDate();
+    }
+    //몇 초나 지났을까요?
+    function getSecondsToday() {
+        let temp = new Date();
+        temp.setHours(0, 0, 0, 0);
+        let sub = new Date();
+        return (sub - temp) / 1000;
+    }
+    //몇 초나 남았을까요?
+    function getSecondsToTomorrow() {
+        let temp = new Date();
+        temp.setDate(temp.getDate() + 1);
+        temp.setHours(0, 0, 0, 0);
+        let sibal = Date.now();
+        console.log(temp); 
+        return (temp - sibal) / 1000;
+    }
+    //상대 날짜 출력하기
+    function formatDate(date) {
+        let now = Date.now();
+        let current =  date.getTime();
+        let diffTime = (now - current) / 1000;
+        diffTime = Math.floor(diffTime);
+        if(diffTime < 1) {
+            return "right now";
+        } else if (diffTime < 60) {
+            return `${diffTime} sec. ago`;
+        } else if (diffTime < 60 * 60){
+            return `${diffTime / 60} min. ago`;
+        } else {
+            let DD = date.getDate();
+            let MM = date.getMonth() + 1;
+            let YY = ""+date.getFullYear();
+            YY = +YY.slice(2);
+            let HH = date.getHours();
+            let mm = date.getMinutes();
+            
+            console.log(DD);
+            console.log(MM);
+            console.log(YY);
+            console.log(HH);
+            console.log(mm);
+            return `${DD < 10 ? "0"+ DD: DD}.${MM < 10 ? "0"+ MM: MM}.${YY < 10 ? "0"+ YY: YY} ${HH < 10 ? "0"+ HH: HH}:${mm< 10 ? "0"+ mm: mm}`;
+        }
+    }
+    alert( formatDate(new Date(new Date - 1)) ); // "현재"
+
+alert( formatDate(new Date(new Date - 30 * 1000)) ); // "30초 전"
+
+alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5분 전"
+
+// 어제를 나타내는 날짜를 "일.월.연 시:분" 포맷으로 출력
+alert( formatDate(new Date(new Date - 86400 * 1000)) );
+</script>
+
+</html>
