@@ -1,0 +1,36 @@
+<!doctype html>
+<script src="https://ko.js.cx/test/libs.js"></script>
+<script src="test.js"></script>
+<script>
+
+    // 배열에서 중복 요소 제거하기. 
+    // function unique(arr) {
+    //     let result = new Set(arr);
+    //     return Array.from(result);
+    // }
+
+    // let values = ["Hare", "Krishna", "Hare", "Krishna",
+    //     "Krishna", "Krishna", "Hare", "Hare", ":-O"
+    // ];
+
+    // alert(unique(values)); // 얼럿창엔 `Hare, Krishna, :-O`만 출력되어야 합니다.
+
+    //애너그램 걸러내기.
+    let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+    function aclean(arr) {
+        let result = new Map();
+        for(let i = 0; i < arr.length; i++){
+            
+            char = arr[i].toUpperCase().split("").sort().join("");
+            result.set(char,arr[i]);
+        }
+        return Array.from(result.values());
+    }
+
+    // alert(aclean(arr)); // "nap,teachers,ear"나 "PAN,cheaters,era"이 출력되어야 합니다.
+
+    
+</script>
+
+</html>
