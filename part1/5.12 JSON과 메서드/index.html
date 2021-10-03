@@ -1,0 +1,41 @@
+<!doctype html>
+<script src="https://ko.js.cx/test/libs.js"></script>
+<script src="test.js"></script>
+<script>
+    //객체를 JSON으로 바꾼 후 다시 객체로 바꾸기
+    // let user = {
+    //     name: "John Smith",
+    //     age: 35
+    // };
+    // let jsonData = JSON.stringify(user);
+    // let temp = JSON.parse(jsonData);
+    // console.log(temp);
+
+    //역참조 배제하기
+    let room = {
+        number: 23
+    };
+
+    let meetup = {
+        title: "Conference",
+        occupiedBy: [{ name: "John" }, { name: "Alice" }],
+        place: room
+    };
+
+    room.occupiedBy = meetup;
+    meetup.self = meetup;
+
+    alert(JSON.stringify(meetup, function replacer(key, value) {
+        return (key != "" && value == meetup) ? undefined : value;
+    }));
+
+    /*
+    {
+      "title":"Conference",
+      "occupiedBy":[{"name":"John"},{"name":"Alice"}],
+      "place":{"number":23}
+    }
+    */
+</script>
+
+</html>
