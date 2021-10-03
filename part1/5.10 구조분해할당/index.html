@@ -2,8 +2,34 @@
 <script src="https://ko.js.cx/test/libs.js"></script>
 <script src="test.js"></script>
 <script>
+    let user = { name: "John", years: 30 };
 
+    // 할당 연산자 좌측에 답안을 작성하시면 되겠죠?
+    // ... = user
+    let { name, years: age, isAdmin = false } = user;
 
+    // alert(name); // John
+    // alert(age); // 30
+    // alert(isAdmin); // false
+
+    // 최대 급여 계산하기
+    let salaries = {
+        "John": 100,
+        "Pete": 300,
+        "Mary": 250
+    };
+    function topSalary(salaries) {
+        let topSalary = 0;
+        let topSalaryPeople = null;
+        
+        for(let [key, value] of Object.entries(salaries)){
+            if(topSalary < value) {
+                topSalary = value;
+                topSalaryPeople = key;
+            }
+        }
+        return topSalaryPeople;
+    }
 </script>
 
 </html>
