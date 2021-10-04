@@ -1,0 +1,67 @@
+<!doctype html>
+<script src="https://ko.js.cx/test/libs.js"></script>
+<script src="test.js"></script>
+<script>
+    //주어진 숫자까지의 모든 숫자 더하기.
+    // function sumTo(number) {
+        //첫번쨰 방법 반복문
+        // let totalSum = 0; 
+        // for(let i = number; i > 0; i--) {
+        //     totalSum += i;
+        // }
+        // return totalSum;
+        //두번째 방법 재귀
+    //     if (number == 1) {
+    //         return 1;
+    //     }
+    //     return number + sumTo(number - 1);
+    // 세번째 방법 등차수열 공식
+    //     return (number * (number + 1)) / 2;
+    // }
+
+    //팩토리얼 계산하기
+    function factorial(n) {
+        if(n == 1) return 1;
+        return n * factorial(n - 1);
+    }
+    // 피보나치 수 계산하기 재귀이용
+    // function fib(n) {
+    //     if(n == 2) return 1;
+    //     if(n == 1) return 1;
+    //     return fib(n - 1) + fib(n - 2)
+    // }
+    // 피보나치 반복문 이용 
+    function fib(n) {
+        let a = 1;
+        let b = 1;
+        let s = 0;
+        for(let c = 3; c <= n; c++) {
+            s = b;
+            b = a + b;
+            a = s;
+        }
+        return b;
+    }
+    // 단일 연결리스트 출력하기
+    //재귀
+    function printList(list) {
+        console.log(list.value);
+        if (list.next) {
+            return printList(list.next);
+        }
+    }
+    //반복문
+    // function printList(obj) {
+    //     let tmp = obj;
+    //     while(tmp) {
+    //         console.log(tmp.value);
+    //         tmp = tmp.next;
+    //     }
+    // }
+    //단일 연결 리스트를 역순으로 출력하기
+    function printReverseList(list) {
+        
+    }
+</script>
+
+</html>
