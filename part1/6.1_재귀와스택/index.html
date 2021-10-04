@@ -4,13 +4,13 @@
 <script>
     //주어진 숫자까지의 모든 숫자 더하기.
     // function sumTo(number) {
-        //첫번쨰 방법 반복문
-        // let totalSum = 0; 
-        // for(let i = number; i > 0; i--) {
-        //     totalSum += i;
-        // }
-        // return totalSum;
-        //두번째 방법 재귀
+    //첫번쨰 방법 반복문
+    // let totalSum = 0; 
+    // for(let i = number; i > 0; i--) {
+    //     totalSum += i;
+    // }
+    // return totalSum;
+    //두번째 방법 재귀
     //     if (number == 1) {
     //         return 1;
     //     }
@@ -21,7 +21,7 @@
 
     //팩토리얼 계산하기
     function factorial(n) {
-        if(n == 1) return 1;
+        if (n == 1) return 1;
         return n * factorial(n - 1);
     }
     // 피보나치 수 계산하기 재귀이용
@@ -35,7 +35,7 @@
         let a = 1;
         let b = 1;
         let s = 0;
-        for(let c = 3; c <= n; c++) {
+        for (let c = 3; c <= n; c++) {
             s = b;
             b = a + b;
             a = s;
@@ -59,8 +59,26 @@
     //     }
     // }
     //단일 연결 리스트를 역순으로 출력하기
-    function printReverseList(list) {
+    //재귀
+    // function printReverseList(list) {
+    //     if (list.next) {
+    //         printList(list.next);
+    //     }
+    //     console.log(list.value);
+    // }
+    //반복문
+    function printReverseList(obj) {
+        let arr = [];
+        let tmp = obj;
         
+        while(tmp) {
+            arr.push(tmp.value);
+            tmp = tmp.next;
+        }
+
+        for (let i = arr.length; i >= 0; i--) {
+            console.log(arr[i]);
+        }
     }
 </script>
 
