@@ -1,0 +1,26 @@
+<!doctype html>
+<script src="https://ko.js.cx/test/libs.js"></script>
+<script src="test.js"></script>
+<script>
+// 클로저를 이용하여 합 구하기
+function sum(n1) {
+    
+    return function (n2) {
+        return n1 + n2;
+    }
+}
+//함수를 이용해 원하는 값만 걸러내기 
+function inBetween(n,s) {
+    
+    return function(x) {
+            return x >= n && x <= s;
+    }
+}
+function inArray(arr) {
+    return function(x) {
+            return arr.includes(x);
+    }
+}
+</script>
+
+</html>
