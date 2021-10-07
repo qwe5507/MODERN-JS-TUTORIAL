@@ -27,23 +27,27 @@
             return a[str] > b[str] ? 1 : -1
         }
     }
-    let i ;
+
     //함수를 사용해 군대 만들기
     function makeArmy() {
+
         let shooters = [];
 
-        i = 0;
-        while (i < 10) {
-            let shooter = function () { // shooter 함수
-                alert(i); // 몇 번째 shooter인지 출력해줘야 함
+        for (let i = 0; i < 10; i++) {
+            let shooter = function () { // shooter function
+                alert(i); // should show its number
             };
             shooters.push(shooter);
-            i++;
         }
-
 
         return shooters;
     }
+    //
+
+    let army = makeArmy();
+
+    army[0](); // 0
+    army[5](); // 5
 </script>
 
 </html>
