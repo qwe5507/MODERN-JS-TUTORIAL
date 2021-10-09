@@ -2,15 +2,35 @@
 <script src="https://ko.js.cx/test/libs.js"></script>
 <script src="test.js"></script>
 <script>
+    //일초 간격으로 숫자 출력하기
     function printNumbers(from, to) {
-
-        setInterval(() => {
-            for(let i = from; i < to; i++) {
-                alert(i);
+        // setInterval 이용
+        // let check = setInterval(() => {
+        //     alert(from++);
+        //     if(from > to) {
+        //     clearInterval(check);    
+        // }
+        // }, 1000);
+        // 중첩 setTimeout 이용
+        let check = setTimeout(function run(){
+            alert(from);
+            if(from < to) {
+                setTimeout(run,1000) 
             }
-        }, 1000);
+            from++;
+
+        },1000)
     }
-    printNumbers(0, 5)
+
+    // printNumbers(0, 5)
+    let i = 0;
+
+setTimeout(() => alert(i), 0); // 100000000이 출력됩니다.
+    i = 50;
+// assume that the time to execute this function is >100ms
+for(let j = 0; j < 10000000; j++) {
+  i++;
+}
 </script>
 
 </html>
