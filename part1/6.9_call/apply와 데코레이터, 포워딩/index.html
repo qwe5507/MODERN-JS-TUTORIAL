@@ -1,0 +1,38 @@
+<!doctype html>
+<script src="https://ko.js.cx/test/libs.js"></script>
+<script src="test.js"></script>
+<script>
+    //스파이 데코레이터 
+    function work(a, b) {
+        alert(a + b); // work is an arbitrary function or method
+    }
+    function spy(func) {
+        let cache = new Map();
+        
+         function asd(...arg) {
+            
+            let key = arg; // (*)
+            if (cache.has(key)) {
+                return cache.get(key);
+            }
+
+            asd.calls.push(key);
+
+            let result = func.call(this, ...arg); // (**)
+            cache.set(key, result);
+            return result;
+        };
+        asd.calls = [];
+        return asd;
+    }
+    work = spy(work);
+
+    work(1, 2); // 3
+    work(4, 5); // 9
+
+    for (let args of work.calls) {
+        alert('call:' + args.join()); // "call:1,2", "call:4,5"
+    }
+</script>
+
+</html>
