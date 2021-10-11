@@ -33,26 +33,39 @@
     // for (let args of work.calls) {
     //     alert('call:' + args.join()); // "call:1,2", "call:4,5"
     // }
+
     //지연 데코레이터
-    function f(x) {
-        alert(x);
-        console.log(x);
-    }
+    // let user = {
+    //     sayHi: function (phrase, who) {
+    //         assert.equal(this, user);
+    //         assert.equal(phrase, "test");
+    //         assert.equal(who, "John");
+    //         assert.equal(Date.now() - start, 1500);
+    //     }
+    // };
+
     function delay(f, ms) {
 
-        return function () {
-            console.log(this);
-            setTimeout(() => f.apply(this, arguments), ms);
+        return function (...args) {
+            let savedThis = this; // store this into an intermediate variable
+            console.log(savedThis);
+            setTimeout(function () {
+                f.apply(savedThis, args); // use it here
+            }, ms);
         };
 
     }
-    
-    // create wrappers
-    let f1000 = delay(f, 1000);
-    let f1500 = delay(f, 1500);
 
-    f1000("test"); // shows "test" after 1000ms
-    f1500("test"); // shows "test" after 1500ms
+    // // create wrappers
+    user.sayHi = delay(user.sayHi, 1000);
+    user.sayHi = delay(user.sayHi, 1500);
+
+    user.sayHi("test"); // shows "test" after 1000ms
+    user.sayHi("test"); // shows "test" after 1500ms
+
+    //디바운스 데코레이터
+    
+
 </script>
 
 </html>

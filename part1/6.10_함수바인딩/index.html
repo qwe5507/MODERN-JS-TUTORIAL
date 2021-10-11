@@ -1,0 +1,45 @@
+<!doctype html>
+<script src="https://ko.js.cx/test/libs.js"></script>
+<script src="test.js"></script>
+<script>
+    //this 값이 undefined인 함수 고치기
+    // function askPassword(ok, fail) {
+    //     let password = prompt("비밀번호를 입력해주세요.", '');
+    //     if (password == "rockstar") ok();
+    //     else fail();
+    // }
+
+    // let user = {
+    //     name: 'John',
+
+    //     loginOk() {
+    //         alert(`${this.name}님이 로그인하였습니다.`);
+    //     },
+
+    //     loginFail() {
+    //         alert(`${this.name}님이 로그인에 실패하였습니다.`);
+    //     },
+
+    // };
+
+    // askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
+
+    //로그인에 부분 적용 하기 
+    function askPassword(ok, fail) {
+        let password = prompt("비밀번호를 입력해주세요.", '');
+        if (password == "rockstar") ok();
+        else fail();
+    }
+
+    let user = {
+        name: 'John',
+
+        login(result) {
+            alert(this.name + (result ? ' 로그인 성공' : ' 로그인 실패'));
+        }
+    };
+
+    askPassword(user.login.bind(user, true), user.login.bind(user, false)); // ?
+</script>
+
+</html>
