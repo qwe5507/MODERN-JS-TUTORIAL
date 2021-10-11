@@ -57,15 +57,27 @@
     }
 
     // // create wrappers
-    user.sayHi = delay(user.sayHi, 1000);
-    user.sayHi = delay(user.sayHi, 1500);
+    // user.sayHi = delay(user.sayHi, 1000);
+    // user.sayHi = delay(user.sayHi, 1500);
 
-    user.sayHi("test"); // shows "test" after 1000ms
-    user.sayHi("test"); // shows "test" after 1500ms
+    // user.sayHi("test"); // shows "test" after 1000ms
+    // user.sayHi("test"); // shows "test" after 1500ms
 
     //디바운스 데코레이터
-    
+    // let f = debounce(alert, 1000);
 
+    // f("a");
+    // setTimeout(() => f("b"), 200);
+    // setTimeout(() => f("c"), 500);
+    // debounced function waits 1000ms after the last call and then runs: alert("c")
+    function debounce(func, ms) {
+        let timeout;
+        return function () {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, arguments), ms);
+        };
+    }
+    //스로틀 데코레이터
 </script>
 
 </html>
