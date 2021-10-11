@@ -8,16 +8,16 @@
     }
     function spy(func) {
         let cache = new Map();
-        
-         function asd(...arg) {
-            
+
+        function asd(...arg) {
+
             let key = arg; // (*)
             if (cache.has(key)) {
                 return cache.get(key);
             }
 
             asd.calls.push(key);
-
+            console.log(arg)
             let result = func.call(this, ...arg); // (**)
             cache.set(key, result);
             return result;
@@ -25,14 +25,34 @@
         asd.calls = [];
         return asd;
     }
-    work = spy(work);
+    // work = spy(work);
 
-    work(1, 2); // 3
-    work(4, 5); // 9
+    // work(1, 2); // 3
+    // work(4, 5); // 9
 
-    for (let args of work.calls) {
-        alert('call:' + args.join()); // "call:1,2", "call:4,5"
+    // for (let args of work.calls) {
+    //     alert('call:' + args.join()); // "call:1,2", "call:4,5"
+    // }
+    //지연 데코레이터
+    function f(x) {
+        alert(x);
+        console.log(x);
     }
+    function delay(f, ms) {
+
+        return function () {
+            console.log(this);
+            setTimeout(() => f.apply(this, arguments), ms);
+        };
+
+    }
+    
+    // create wrappers
+    let f1000 = delay(f, 1000);
+    let f1500 = delay(f, 1500);
+
+    f1000("test"); // shows "test" after 1000ms
+    f1500("test"); // shows "test" after 1500ms
 </script>
 
 </html>
