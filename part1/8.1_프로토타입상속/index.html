@@ -1,0 +1,25 @@
+<!doctype html>
+<script src="https://ko.js.cx/test/libs.js"></script>
+<script src="test.js"></script>
+<script>
+    //프로토타입 이해하기
+let animal = {
+  jumps: null
+};
+let rabbit = {
+  __proto__: animal,
+  jumps: true
+};
+
+alert( rabbit.jumps ); // ? (1)
+
+delete rabbit.jumps;
+
+alert( rabbit.jumps ); // ? (2)
+
+delete animal.jumps;
+
+alert( rabbit.jumps ); // ? (3)
+</script>
+
+</html>
