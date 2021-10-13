@@ -1,0 +1,17 @@
+<!doctype html>
+<script src="https://ko.js.cx/test/libs.js"></script>
+<script src="test.js"></script>
+<script>
+  //동일한 생성자 함수로 객체 만들기 
+  function Obj(name) {
+    this.name = name;
+  }
+   //안되는 예시 
+  Obj.prototype = {};
+  let obj = new Obj("hong");
+
+  let obj2 = new obj.constructor();
+  
+</script>
+
+</html>
