@@ -2,24 +2,70 @@
 <script src="https://ko.js.cx/test/libs.js"></script>
 <script src="test.js"></script>
 <script>
-    //프로토타입 이해하기
-let animal = {
-  jumps: null
-};
-let rabbit = {
-  __proto__: animal,
-  jumps: true
-};
+  //프로토타입 이해하기
+  // let animal = {
+  //   jumps: null
+  // };
+  // let rabbit = {
+  //   __proto__: animal,
+  //   jumps: true
+  // };
 
-alert( rabbit.jumps ); // ? (1)
+  // alert(rabbit.jumps); // (1) true
 
-delete rabbit.jumps;
+  // delete rabbit.jumps;
 
-alert( rabbit.jumps ); // ? (2)
+  // alert(rabbit.jumps); // (2) null
 
-delete animal.jumps;
+  // delete animal.jumps;
 
-alert( rabbit.jumps ); // ? (3)
-</script>
+  // alert(rabbit.jumps); // (3) undefined
+  //검색 알고리즘 
+  let head = {
+    glasses: 1
+  };
+
+  let table = {
+    pen: 3,
+    __proto__: head,
+  };
+
+  let bed = {
+    sheet: 1,
+    pillow: 2,
+    __proto__: table,
+  };
+
+  let pockets = {
+    money: 2000,
+    __proto__: bed,
+  };
+  //   alert(pockets.pen); // 3
+  //   alert(bed.glasses); // 1
+  //   alert(table.money); // undefined
+  //왜 햄스터 두 마리의 배는 꽉 찰까요?
+  let hamster = {
+    stomach: [],
+
+    eat(food) {
+      this.stomach = [food];
+    }
+  };
+
+  let speedy = {
+    __proto__: hamster
+  };
+
+  let lazy = {
+    __proto__: hamster
+  };
+
+  // 햄스터 한 마리가 음식을 찾았습니다.
+  speedy.eat("apple");
+  alert(speedy.stomach); // apple
+
+  // 이 햄스터도 같은 음식을 가지고 있습니다. 왜 그럴까요? 고쳐주세요.
+  alert(lazy.stomach); // apple
+//</script>
 
 </html>
