@@ -1,13 +1,12 @@
 <!doctype html>
 <script>
-
+    // 클래스로 다시 작성하기.
     class Clock {
         constructor({ template }) {
             this.template = template;
         }
-        render() {
 
-            let timer;
+        render() {
             let date = new Date();
 
             let hours = date.getHours();
@@ -19,27 +18,32 @@
             let secs = date.getSeconds();
             if (secs < 10) secs = '0' + secs;
 
-            let output = template
+            let output = this.template
                 .replace('h', hours)
                 .replace('m', mins)
                 .replace('s', secs);
 
             console.log(output);
         }
-        stop = () => {
-            clearInterval(timer);
-        };
 
-        start = () => {
-            render();
-            timer = setInterval(render, 1000);
-        };
+        stop() {
+            clearInterval(this.timer);
+        }
 
+        start() {
+            this.render();
+            this.timer = setInterval(() =>  this.render(), 1000);
+        }
     }
+
 
     let clock = new Clock({ template: 'h:m:s' });
     clock.start();
+    console.log(clock)
+    console.log(Object.getPrototypeOf(clock));
 
+    // clock.stop();
+    
 </script>
 
 </html>
