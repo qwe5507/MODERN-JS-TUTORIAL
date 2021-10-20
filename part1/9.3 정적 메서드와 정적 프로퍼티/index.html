@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+
+<script>
+  class Rabbit {
+    constructor(name) {
+      this.name = name;
+    }
+  }
+
+  let rabbit = new Rabbit("Rab");
+
+  alert(Rabbit.bind(this)); // Error
+  // alert(Rabbit.hasOwnProperty('name')); // Error
+</script> 
