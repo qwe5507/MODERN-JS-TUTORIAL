@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+
+<script>
+
+  //이상한 instanceof
+  function A() { }
+  function B() { }
+
+  A.prototype = B.prototype = {};
+
+  let a = new A();
+
+  alert(a instanceof B); // true
+
+  // 정답 : function A와 function B의 prototype이 동일 해서 True
+  // instanceof는 proto체인을 검사한다. 
+</script>
