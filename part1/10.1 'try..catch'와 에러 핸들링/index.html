@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+
+<script>
+// finally 아니면 코드만?
+function f() {
+  try {
+    alert('시작');
+    return "결과";
+  } catch (e) {
+    /// ...
+  } finally {
+    alert('초기화!');
+  }
+}
+
+f(); // cleanup!
+
+function f() {
+  try {
+    alert('시작');
+    throw new Error("에러 발생!");
+  } catch (e) {
+    // ...
+    if("에러를 핸들링 할 수 없다면") {
+      throw e;
+    }
+
+  } finally {
+    alert('초기화!')
+  }
+}
+
+f(); // cleanup!
+// 위와같이 throw나 return이 와도 try가 빠져나가는 어떠한 경우에도 finally는 실행 된다.
+</script>
