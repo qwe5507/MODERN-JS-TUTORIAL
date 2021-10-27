@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+
+  <script>
+    //두 번 resolve 하기?
+    let promise = new Promise(function (resolve, reject) {
+      resolve(1);
+
+      setTimeout(() => resolve(2), 1000);
+    });
+
+    // promise.then(alert);
+    // 결과 : reslove가 즉시실행되고 아래 resolve는 무시된다.
+
+    //프라미스로 지연 만들기
+    function delay(ms) {
+      return new Promise((resolve, reject) => {
+          setTimeout(resolve, ms);
+        }
+      )
+    }
+
+    delay(3000).then(() => alert('3초후 실행'));
+
+  </script>
+
+
+</body>
+
+</html>
