@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+
+  <script>
+// setTimeout에서의 에러 
+new Promise(function(resolve, reject) {
+  setTimeout(() => {
+    // throw new Error("에러 발생!");  // catch 못잡음
+    reject(new Error("에러 발생"));   // catch 잡음 
+  }, 1000);
+}).catch(alert);
+
+//Throw로 일부로 내거나, 그냥 발생한 에러는 '동기적인' 에러만 catch로 잡을수 있는 것 같다!
+  </script>
+
+
+</body>
+
+</html>
