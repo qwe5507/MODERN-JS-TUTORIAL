@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+</body>
+<script>
+
+let log = (log) => console.log(log);
+
+// function test1(){
+//     let testName="test1";
+//     console.log(this.testName);
+// }
+
+// test1();
+
+// let dict1={
+//     testName:"dict1",
+//     f:test1
+// }
+
+// dict1.f();
+
+// let dict2={
+//     testName:"dict2",
+//     f:function(){
+//         let testName="function";
+//         console.log(this.testName);
+//     }
+// }
+// dict2.f();
+
+// let dict3={
+//     testName:"dict3",
+//     in_dict:{
+//         testName:"in_dict",
+//         f:function(){
+//             let testName="function";
+//             console.log(this.testName);
+//         }
+//     }
+// }
+
+// dict3.in_dict.f();
+
+// function fun(x){
+//   // console.log(x);
+//     x();
+// }
+
+// let dict2={
+//     testName:"dict2",
+//     f:function(){
+//         let testName="function";
+//         console.log(this.testName);
+//     }
+// }
+
+
+
+// fun(dict2.f);
+
+// fun(function(){dict2.f()});
+
+let dict4={
+    testName:"dict4",
+    f:fun
+}
+
+function fun(x){
+  // console.log(x);
+    x();
+}
+
+let dict5={
+    testName:"dict5",
+    f:function(){
+      console.log(this) // dict5
+        fun(function(){
+          console.log(this)
+            // console.log(this.testName);
+        })
+    }
+}
+
+setTimeout(function() {dict5.f()}, 1000);
+// dict5.f();
+// let dict5={
+//     testName:"dict5",
+//     f:function(){
+//         console.log(this);
+//         fun(()=>{
+//             console.log(this.testName);
+//         })
+//     }
+// }
+
+// dict5.f();
+</script>
+
+</html>
