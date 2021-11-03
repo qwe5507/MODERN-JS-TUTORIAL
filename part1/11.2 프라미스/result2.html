@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    .message-ball {
+      font-size: 20px;
+      line-height: 200px;
+      text-align: center;
+    }
+
+    .circle {
+      transition-property: width, height, margin-left, margin-top;
+      transition-duration: 2s;
+      position: fixed;
+      transform: translateX(-50%) translateY(-50%);
+      background-color: red;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <button onclick="go()">여기를 클릭해 주세요.</button>
+
+  <script>
+    // 프라미스로 애니메이션이 적용된 원 만들기 // async로 풀기
+    function go() {
+      showCircle(150, 150, 100).then(div => {
+        div.classList.add('message-ball');
+        div.append("Hello, world!");
+      });
+    }
+
+    async function showCircle(cx, cy, radius) {
+      let div = document.createElement('div');
+      div.style.width = 0;
+      div.style.height = 0;
+      div.style.left = cx + 'px';
+      div.style.top = cy + 'px';
+      div.className = 'circle';
+      document.body.append(div);
+      let returnDiv =  new Promise(function (resolve, reject) {
+        setTimeout(() => {
+          div.style.width = radius * 2 + 'px';
+          div.style.height = radius * 2 + 'px';
+
+          div.addEventListener('transitionend', function handler() {
+            div.removeEventListener('transitionend', handler);
+            // callback(div);
+            resolve(div);
+          });
+        }, 3000);
+      });
+      return returnDiv;
+
+    }
+  </script>
+
+
+</body>
+
+</html>
