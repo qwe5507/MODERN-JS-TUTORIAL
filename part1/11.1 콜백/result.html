@@ -25,7 +25,7 @@
 <button onclick="go()">여기를 클릭해 주세요.</button>
 
   <script>
-
+// 콜백을 이용한 움직이는 원
   function go() {
     showCircle(150, 150, 100, div => {
       div.classList.add('message-ball');
@@ -48,6 +48,8 @@
 
       div.addEventListener('transitionend', function handler() {
         div.removeEventListener('transitionend', handler);
+        // 이유는 모르겠지만 이벤트리스너를 안없애주면 안녕하세요.안녕하세요. 두번찍힘
+        //  transitionend 이벤트가 두번 실행 되는듯 
         callback(div);
       });
     }, 0);
