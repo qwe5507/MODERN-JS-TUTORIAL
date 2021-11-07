@@ -1,4 +1,4 @@
-export function sayHi(user) {
+export function sayHis(user) {
   return `Hello, ${user}!`;
 }
 
