@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+<head>
+  <!-- <meta charset="utf-8"> -->
+</head>
+
+<body>
+</body>
+<script>
+  // 문법 점검하기
+  // let user = {
+  //   name: "John",
+  //   go: function () { alert(this.name) }
+  // };
+  // (user.go)()
+  let user = {
+    name: "John",
+    hi() { alert(this.name); },
+    bye() { alert("Bye"); }
+  };
+
+  user.hi(); // John (간단한 호출은 의도한 대로 잘 동작합니다.)
+
+  // name에 따라 user.hi나 user.bye가 호출되게 해봅시다.
+  // (user.name == "John" ? user.hi : user.bye)(); //실행 안됨
+  user.name == "John" ? user.hi() : user.bye();    //실행 됨
+
+  //'this' 값 알아내기
+  let obj, method;
+
+  obj = {
+    go: function () { alert(this); }
+  };
+
+  obj.go();               // (1) [object Object]
+
+  (obj.go)();             // (2) [object Object] 참조타입의 실행이 가장먼저 실행됬기 떄문에 this를 잃어버리지 않는다.
+
+  (method = obj.go)();    // (3) undefined 
+
+  (obj.go || obj.stop)(); // (4) undefined
+  // 3, 4 번은 참조타입값이 바로 실행되기 전 다른 연산이 행해 져 this를 잃어버린다.
+  // 바로 실행하는게 아닌 참조 타입에 행해지는 모든 연산은 일반 값으로 바뀐다!
+
+</script>
+
+</html>
