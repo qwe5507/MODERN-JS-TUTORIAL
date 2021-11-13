@@ -6,26 +6,101 @@
 </head>
 
 <body>
- 
+
 
 </body>
 
 <script>
-let numbers = [0, 1, 2];
+  // let numbers = [0, 1, 2];
 
-numbers = new Proxy(numbers, {
-  get(target, prop) {
-    if (prop in target) {
-      console.log(prop); // 1 
-      return target[prop];
-    } else {
-      console.log(prop); // 123
-      return 0; // 기본값
+  // numbers = new Proxy(numbers, {
+  //   get(target, prop) {
+  //     if (prop in target) {
+  //       console.log(prop); // 1 
+  //       return target[prop];
+  //     } else {
+  //       console.log(prop); // 123
+  //       return 0; // 기본값
+  //     }
+  //   }
+  // });
+
+  // alert( numbers[1] ); // 1
+  // alert( numbers[123] ); // 0 (해당하는 요소가 배열에 없으므로 0이 반환됨)
+
+  // 존재하지 않는 프로퍼티를 읽으려고 할 때 에러 던지기
+  // let user = {
+  //   name: "John"
+  // };
+
+  // function wrap(target) {
+  //   return new Proxy(target, {
+  //     /* 여기에 코드를 작성하세요. */
+  //     get(target, prop, receiver) {
+  //       if (prop in target) {
+  //         return Reflect.get(target, prop, receiver);
+  //       } else {
+  //         throw new ReferenceError(`Property doesn't exist '${prop}'`);
+  //       }
+  //     }
+  //   });
+  // }
+
+  // user = wrap(user);
+
+  // alert(user.name); // John
+  // alert(user.age); // ReferenceError: Property doesn't exist "age"
+
+  // 음수 인덱스를 사용해 배열 요소에 접근하기
+  let array = [1, 2, 3];
+
+  array = new Proxy(array, {
+    get(target, prop, receiver) {
+      if (prop < 0) {
+        return Reflect.get(target, target.length + +prop, receiver);
+      } else {
+        return Reflect.get(target, prop, receiver);
+      }
     }
-  }
-});
+  });
 
-alert( numbers[1] ); // 1
-alert( numbers[123] ); // 0 (해당하는 요소가 배열에 없으므로 0이 반환됨)
+  alert(array[-1]); // 3
+  alert(array[-2]); // 2
+
+  // Observable 만들기
+  let handlers = Symbol('handlers');
+
+  function makeObservable(target) {
+    // 1. 핸들러를 저장할 곳을 초기화합니다.
+    target[handlers] = [];
+
+    // 나중에 호출될 것을 대비하여 핸들러 함수를 배열에 저장합니다.
+    target.observe = function (handler) {
+      this[handlers].push(handler);
+    };
+
+    // 2. 변경을 처리할 프락시를 만듭니다.
+    return new Proxy(target, {
+      set(target, property, value, receiver) {
+        let success = Reflect.set(...arguments); // 동작을 객체에 전달합니다.
+        if (success) { // 에러 없이 프로퍼티를 제대로 설정했으면
+          // 모든 핸들러를 호출합니다.
+          target[handlers].forEach(handler => handler(property, value));
+        }
+        return success;
+      }
+    });
+  }
+
+  let user = {};
+
+  user = makeObservable(user);
+
+  user.observe((key, value) => {
+    alert(`SET ${key}=${value}`);
+  });
+
+  user.name = "John";
 </script>
+
 </html>
